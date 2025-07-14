@@ -1,0 +1,24 @@
+name: Html Lint for release
+
+on:
+  push: 
+    branches: [release]
+
+
+jobs:
+  html-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: install Html lint 
+        run: npm install htmlhint
+
+      - name: Lint Files run
+        run: npx htmlhint src/**/*.html

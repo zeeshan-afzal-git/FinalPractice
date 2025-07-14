@@ -1,0 +1,24 @@
+name: CSS Lint for release
+
+on:
+  push: 
+    branches: [release]
+
+
+jobs:
+  css-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: install CSS lint 
+        run: npm install stylelint stylelint-config-standard
+
+      - name: Lint Files run
+        run: npx stylelint styles/**/*.css
